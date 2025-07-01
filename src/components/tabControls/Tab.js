@@ -5,7 +5,7 @@ const TabAI = () => {
   return (
    <Tab.Container defaultActiveKey="first">
       <Row className="m-2">
-        <Col sm={3}>
+        <Col sm={3} className="p-2">
           <Card className="m-2">
             <Nav variant="pills" className="mt-1">
               <Nav.Item className="w-100 p-2">
@@ -18,7 +18,7 @@ const TabAI = () => {
           </Card>
         </Col>
         <Col sm={9} className="p-2">
-          <Card>
+          <Card className="m-2">
             <Tab.Content>
               <Tab.Pane eventKey="first">
                 <AITextGenerate/>
