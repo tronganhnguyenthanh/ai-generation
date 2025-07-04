@@ -1,11 +1,10 @@
 import axios from "axios"
 import {useState} from "react"
-import {Container, Form} from "react-bootstrap"
+import {Button, Container, Form} from "react-bootstrap"
 const AITextGenerate = () => {
   const [textGenerate, setTextGenerate] = useState("")
   const [textGenerateAIList, setTextGenerateAIList] = useState([])
-  const generateText = async (e) => {
-    setTextGenerate(e?.target?.value)
+  const generateText = async () => {
     let res = await axios({
      method:"POST",
      url:"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyDEbPca9M5RWekOML-NFkD14puut4GrKi4",
@@ -30,8 +29,9 @@ const AITextGenerate = () => {
         <Form.Control 
           placeholder="Enter your text" 
           className="form-custom-control" 
-          onChange={generateText}
+          onChange={(e) => setTextGenerate(e?.target?.value)}
         />
+        <Button type="button" onClick={generateText}>Generate</Button>
       </div>
       <p className="text-secondary">{textGenerateAIList?.content?.parts[0].text}</p>
      </Form.Group>

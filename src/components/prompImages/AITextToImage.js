@@ -1,11 +1,10 @@
 import axios from "axios"
 import {useState} from "react"
-import {Container, Form} from "react-bootstrap"
+import {Button, Container, Form} from "react-bootstrap"
 const AITextToImage = () => {
   const [textGenerateToImage, setTextGenerateToImage] = useState("")
   const [textGenerateToImageList, setTextGenerateToImageList] = useState([])
   const generateTextToImage = async (e) => {
-   setTextGenerateToImage(e?.target?.value)
    let key = "AIzaSyDEbPca9M5RWekOML-NFkD14puut4GrKi4"
    let res = await axios({
     method:"POST",
@@ -38,8 +37,9 @@ const AITextToImage = () => {
          <Form.Control 
            placeholder="Enter your text to image" 
            className="form-custom-control"
-           onChange={generateTextToImage}
+           onChange={(e) => setTextGenerateToImage(e?.target?.value)}
          />
+         <Button type="button" onClick={generateTextToImage}>Generate</Button>
        </div>
        <img 
         src={`data:image/png;base64,${textGenerateToImageList?.content?.parts[1]?.inlineData?.data}`}
